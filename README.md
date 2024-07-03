@@ -1,5 +1,7 @@
 # Sidekiq::SilentRetry
 
+[![Ruby](https://github.com/trusted/sidekiq-silent-retry/actions/workflows/main.yml/badge.svg)](https://github.com/trusted/sidekiq-silent-retry/actions/workflows/main.yml)
+
 `sidekiq-silent-retry` is a middleware for Sidekiq that allows for silent retries of jobs. This gem intercepts exceptions raised during job execution and re-raises under a different exception class, so that tracing services can ignore them. Only the last exception is raised with the original exception.
 
 ## Instalation
