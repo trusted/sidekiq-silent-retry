@@ -1,0 +1,11 @@
+name: Build & Publish RubyGem
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish RubyGem to GitHub Packages
+    uses: trusted/shared-workflows/.github/workflows/build_rubygem.yml@main
