@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+module Sidekiq
+  module SilentRetry
+    class ServerMiddleware
+      def call: (job_instance: untyped, job_payload: Hash[String, untyped], queue: String) -> void
+    end
+  end
+end

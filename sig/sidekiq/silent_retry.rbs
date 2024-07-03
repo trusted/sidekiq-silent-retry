@@ -1,0 +1,12 @@
+module Sidekiq
+  module SilentRetry
+    SilentError: Exception
+    VERSION: String
+
+    @silent_retry_error_class: Exception
+
+    def self.silent_retry_error_class: -> Exception
+
+    def self.silent_retry_error_class=: (error_class: Exception) -> void
+  end
+end
