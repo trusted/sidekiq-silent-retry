@@ -29,7 +29,7 @@ You can specify a custom error class for silent retries. This is useful for maki
 Create an initializer file (e.g., config/initializers/sidekiq_silent_retry.rb) and add the following:
 
 ```ruby
-Sidekiq::Silent::Retry.silent_retry_error_class = MySilentRetryError
+Sidekiq::SilentRetry.silent_retry_error_class = MySilentRetryError
 ```
 
 #### 2. Mark jobs for Silent Retry
@@ -78,4 +78,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Sidekiq::Silent::Retry project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/trusted/sidekiq-silent-retry/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the Sidekiq::SilentRetry project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/trusted/sidekiq-silent-retry/blob/main/CODE_OF_CONDUCT.md).
