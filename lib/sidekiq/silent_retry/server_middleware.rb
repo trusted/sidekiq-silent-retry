@@ -7,21 +7,25 @@ module Sidekiq
 
       def call(_job_instance, job_payload, _queue)
         yield
-      rescue => error
-        raise error unless silent_retry_enabled?(job_payload, error)
-        raise error if retries_exhausted?(job_payload) # if it's the last retry, raise the original error
+      rescue StandardError => e
+        raise e unless silent_retry_enabled?(job_payload, e)
+        raise e if should_warn?(job_payload)
 
-        raise Sidekiq::SilentRetry.silent_retry_error_class, error.message
+        raise Sidekiq::SilentRetry.silent_retry_error_class, e.message
       end
 
       private
 
-      def retries_exhausted?(job_payload)
-        job_payload['retry_count'] == job_payload['retry'] - 1
+      def should_warn?(job_payload)
+        job_payload["retry_count"] >= warn_after(job_payload)
+      end
+
+      def warn_after(job_payload)
+        job_payload["warn_after"]&.to_i || job_payload["retry"] - 1
       end
 
       def silent_retry_enabled?(job_payload, error)
-        option = job_payload['silent_retry']
+        option = job_payload["silent_retry"]
 
         case option
         when TrueClass, FalseClass

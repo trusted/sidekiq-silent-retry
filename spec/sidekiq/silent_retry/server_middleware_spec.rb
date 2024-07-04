@@ -55,6 +55,41 @@ RSpec.describe Sidekiq::SilentRetry::ServerMiddleware do
         expect { subject }.to raise_error(StandardError, "some message")
       end
     end
+
+    context 'when the job has a warn_after option' do
+      let(:job_payload) do
+        {
+          "retry_count" => retry_count,
+          "retry" => 2,
+          "silent_retry" => silent_retry,
+          "warn_after" => 1
+        }
+      end
+
+      context 'when the retry count is less than warn_after' do
+        let(:retry_count) { 0 }
+
+        it 'silents the error' do
+          expect { subject }.to raise_error(Sidekiq::SilentRetry.silent_retry_error_class, "some message")
+        end
+      end
+
+      context 'when the retry count is equal to warn_after' do
+        let(:retry_count) { 1 }
+
+        it 'raises original error' do
+          expect { subject }.to raise_error(StandardError, "some message")
+        end
+      end
+
+      context 'when the retry count is greater than warn_after' do
+        let(:retry_count) { 2 }
+
+        it 'raises original error' do
+          expect { subject }.to raise_error(StandardError, "some message")
+        end
+      end
+    end
   end
 
   context "when silent retry is for specific classes" do
