@@ -40,6 +40,8 @@ In your Sidekiq job class, configure the silent_retry option to control silent r
 - `true`: Always enabled, no matter the error.
 - Some class / Array of classes: Only exceptions of said class(es) will be silently retried.
 
+You can also set `warn_after` option to start raise warnings after a number of retries instead of only the last one.
+
 ```ruby
 class MyJob
   include Sidekiq::Job
@@ -54,7 +56,7 @@ end
 class MyJob
   include Sidekiq::Job
 
-  sidekiq_options silent_retry: [VeryCommonNotImportantError, VeryCommonNotImportantError2]
+  sidekiq_options silent_retry: [CommonError, CommonError2], warn_after: 2
 
   def perform(*args)
     # Your job logic here
