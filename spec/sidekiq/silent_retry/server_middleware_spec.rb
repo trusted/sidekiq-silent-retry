@@ -10,11 +10,12 @@ RSpec.describe Sidekiq::SilentRetry::ServerMiddleware do
     -> { raise error_class, "some message" }
   end
   let(:job_payload) do
-    {
-      "retry_count" => retry_count,
+    payload = {
       "retry" => 2,
       "silent_retry" => silent_retry
     }
+    payload["retry_count"] = retry_count if retry_count
+    payload
   end
 
   context "when silent retry is off" do
