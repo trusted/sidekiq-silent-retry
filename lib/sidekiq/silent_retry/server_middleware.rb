@@ -19,7 +19,7 @@ module Sidekiq
       def should_warn?(job_payload)
         retry_count = job_payload["retry_count"]
 
-        return false if retry_count.nil?
+        return false unless retry_count
 
         retry_count >= warn_after(job_payload)
       end
