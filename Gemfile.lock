@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sidekiq-silent-retry (0.3.1)
+    sidekiq-silent-retry (0.3.2)
       sidekiq (>= 6.0)
 
 GEM
@@ -17,7 +17,7 @@ GEM
       ast (~> 2.4.1)
       racc
     racc (1.8.0)
-    rack (2.2.9)
+    rack (2.2.11)
     rainbow (3.1.1)
     rake (13.2.1)
     redis (4.8.1)
