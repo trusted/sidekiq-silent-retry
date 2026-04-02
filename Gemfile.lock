@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sidekiq-silent-retry (0.3.2)
+    sidekiq-silent-retry (0.3.3)
       sidekiq (>= 6.0)
 
 GEM
@@ -19,7 +19,7 @@ GEM
       ast (~> 2.4.1)
       racc
     racc (1.8.0)
-    rack (2.2.20)
+    rack (3.2.6)
     rainbow (3.1.1)
     rake (13.2.1)
     redis-client (0.24.0)
@@ -66,11 +66,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rack (>= 2.2.13, < 3)
+  rack (>= 2.2.22)
   rake (~> 13.0)
   rspec (~> 3.0)
   rubocop (~> 1.21)
   sidekiq-silent-retry!
 
 BUNDLED WITH
-   2.6.6
+  4.0.3
